@@ -46,6 +46,8 @@ from detectron2.projects.deeplab import add_deeplab_config, build_lr_scheduler
 from detectron2.solver.build import maybe_add_gradient_clipping
 from detectron2.utils.logger import setup_logger
 
+from detectron2.data.datasets import register_coco_instances
+
 # MaskFormer
 from mask2former import (
     COCOInstanceNewBaselineDatasetMapper,
@@ -57,6 +59,9 @@ from mask2former import (
     SemanticSegmentorWithTTA,
     add_maskformer2_config,
 )
+
+register_coco_instances('coco_2018_train', {}, 'datasets/coco/annotations/instances_train2018.json', 'datasets/coco/train2018')
+register_coco_instances('coco_2018_val', {}, 'datasets/coco/annotations/instances_val2018.json', 'datasets/coco/val2018')
 
 
 class Trainer(DefaultTrainer):
